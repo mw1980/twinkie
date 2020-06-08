@@ -2,21 +2,21 @@ package org.mrr.selectors
 
 val selectorsFactory = puppeteerSelectorsFactory
 
-val maskElements = mapOf(
-        "userName" to Pair(SelectorType.HTML_ID, "thiName"),
-        "userPassword" to Pair(SelectorType.CSS, "thiPassword"),
-        "submitButton" to Pair(SelectorType.XPATH, "submitForm")
+val uiElements = listOf(
+        UiElement("userName", SelectorInfo(SelectorType.HTML_ID, "thiName")),
+        UiElement("userPassword", SelectorInfo(SelectorType.CSS, "thiPassword")),
+        UiElement("submitButton", SelectorInfo(SelectorType.XPATH, "submitForm"))
 )
 
 fun main() {
-    maskElements.forEach(
-            fun(maskElement) = println(" [${maskElement.key}, ${maskElement.value.first}, ${maskElement.value.second}]")
+
+    println("----------------------------")
+    uiElements.forEach(
+            fun(uiElement) = println(" [${uiElement.name}, ${uiElement.selectorInfo.type}, ${uiElement.selectorInfo.value}]")
     )
 
     println("----------------------------")
-    maskElements.forEach(fun(maskElement) =
-            println(" [\"${maskElement.key}\" --> \"${selectorsFactory[maskElement.value.first]?.invoke(maskElement.value.second)}\"]"))
+    uiElements.forEach(fun(uiElement) =
+            println(" [\"${uiElement.name}\" --> \"${selectorsFactory[uiElement.selectorInfo.type]?.invoke(uiElement.selectorInfo.value)}\"]"))
 
-    println("----------------------------")
-    println("The selector for element: userPassword is ${selectorInputForElement("""userPassword""", maskElements)}")
 }
