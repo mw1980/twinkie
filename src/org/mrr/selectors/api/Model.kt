@@ -1,4 +1,4 @@
-package org.mrr.selectors
+package org.mrr.selectors.api
 
 enum class SelectorType {
     HTML_ID,
