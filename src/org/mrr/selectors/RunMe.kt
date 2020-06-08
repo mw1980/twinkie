@@ -1,7 +1,5 @@
 package org.mrr.selectors
 
-val selectorsFactory = puppeteerSelectorsFactory
-
 val uiElements = listOf(
         UiElement("userName", SelectorInfo(SelectorType.HTML_ID, "thiName")),
         UiElement("userPassword", SelectorInfo(SelectorType.CSS, "thiPassword")),
@@ -17,6 +15,5 @@ fun main() {
 
     println("----------------------------")
     uiElements.forEach(fun(uiElement) =
-            println(" [\"${uiElement.name}\" --> \"${selectorsFactory[uiElement.selectorInfo.type]?.invoke(uiElement.selectorInfo.value)}\"]"))
-
+            println(" [\"${uiElement.name}\" --> \"${selector(puppeteerFactory)(uiElement)}\"]"))
 }
