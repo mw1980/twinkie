@@ -17,6 +17,9 @@ val selector = fun (factory: SelectorProviderFactory): (UiElement) -> String {
             selectorType === SelectorType.CSS -> {
                 factory.cssSelectorProvider()(uiElement.name)
             }
+            selectorType === SelectorType.DATA_TEST_ID -> {
+                factory.dataTestIdSelectorProvider()(uiElement.name)
+            }
             else -> "unknown"
         }
     }

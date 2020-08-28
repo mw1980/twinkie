@@ -9,7 +9,8 @@ import org.mrr.selectors.puppeteer.PuppeteerSelectorLogic
 val uiElements = listOf(
         UiElement("userName", SelectorInfo(SelectorType.HTML_ID, "thiName")),
         UiElement("userPassword", SelectorInfo(SelectorType.CSS, "thiPassword")),
-        UiElement("submitButton", SelectorInfo(SelectorType.XPATH, "submitForm"))
+        UiElement("submitButton", SelectorInfo(SelectorType.XPATH, "submitForm")),
+        UiElement("otherButton", SelectorInfo(SelectorType.DATA_TEST_ID, "some-data-test-id"))
 )
 
 val selectorLogic: SelectorLogic = PuppeteerSelectorLogic()

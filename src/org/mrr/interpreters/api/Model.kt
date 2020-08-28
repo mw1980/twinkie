@@ -1,18 +1,26 @@
 package org.mrr.interpreters.api
 
-import org.mrr.selectors.api.UiElement
 
-data class Step(val action: Action, val target: UiElement, val value: String?)
+data class TestCase(val steps: List<Step>, val check: Check?)
 
-data class TestAction(val steps: List<Step>, val check: Check?)
+/**
+ * @param target - the name of the element that is the target of the action.
+ * @param value - optional, additional information needed to perform the action, like: the text to enter into an edit
+ * field.
+ */
+data class Step(val type: StepType, val target: String, val value: String? = null)
 
-enum class Action {
+enum class StepType {
     CLICK,
-    SELECT,
-    EDIT_TEXT_FIELD
+    SELECT_CHECKBOX,
+    SELECT_DROPDOWN,
+    TYPE_INTO_TEXT_FIELD,
+    UNSELECT_CHECKBOX,
 }
 
-enum class Check {
+data class Check(val type: CheckType, val target: String, val expected: String? = null)
+
+enum class CheckType {
     ELEMENT_PRESENT,
     VAlUE
 }
